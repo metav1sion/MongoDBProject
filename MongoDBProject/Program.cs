@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.Options;
 using MongoDBProject.Services.CategoryServices;
+using MongoDBProject.Services.ProductServices;
 using MongoDBProject.Settings;
 
 namespace MongoDBProject
@@ -12,6 +13,7 @@ namespace MongoDBProject
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
             builder.Services.AddScoped<IDatabaseSettings>(sp =>
